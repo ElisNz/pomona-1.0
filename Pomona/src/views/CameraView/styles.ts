@@ -2,24 +2,28 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    width: 100,
-    height: 100,
-    flex: 1,
+    width:'50%',
+    height: '50%',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
   },
   cameraContainer: {
-    width: 100,
-    height: 100,
+    width: '50%',
+    height: '100%',
+    overflow: 'hidden',
+    borderRadius: 60,
   },
-  button: {
-    width: 100,
-    height: 30,
-    backgroundColor: 'lightblue',
+  camera: {
+    width: '100%',
+    height: '100%',
+  },
+  overlay: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 20,
   },
 });
 
