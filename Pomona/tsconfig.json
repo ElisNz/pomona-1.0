@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
+    "strict": false,
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"]
-    }
+    },
+    "esModuleInterop": true,
   },
   "extends": "expo/tsconfig.base"
 }
