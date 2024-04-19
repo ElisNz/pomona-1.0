@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 import axios from 'axios';
 const App = express();
 const router = express.Router();
-import fs from 'fs';
+import { dataURIToBlob } from '../../helpers/functions';
 
 App.use(bodyParser.json({ limit: '50mb' }));
 App.use('/upload', bodyParser.raw({ limit: '50mb', type: 'multipart/form-data'}));
@@ -24,17 +24,13 @@ router.get('/languages', async(req, res) => {
 router.post('/upload/single', async(req, res) => {
 
   const { base64img } = req.body;
-
-  const imgBlob = new Blob([fs.readFileSync('image.png')]);
-
-  // fs.writeFileSync('image.png', base64img, 'base64');
+  const file = dataURIToBlob(base64img);
   
   const form = new FormData();
-  form.append('images', imgBlob);
-  console.log(form);
+  form.append('images', file);
 
   try {
-    const response = await axios.postForm('https://my-api.plantnet.org/v2/identify/all?include-related-images=false&no-reject=false&lang=en&api-key=2b10UwUsHR7aRinBcWZerBCF9O', 
+    const response = await axios.postForm(`${process.env.EXTERNAL_API_BASE_PATH}/${process.env.EXTERNAL_API_IDENTIFY_PATH}?api-key=${process.env.API_KEY}`, 
       form
     );
 
