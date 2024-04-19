@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const internalApiPostPath = 'http://localhost:3000/api/upload';
+const host = process.env.API_HOST || 'http://localhost:3000';
+const internalApiPostPath = `${host}/api/upload/single`;
 
 const internalPostRequest = async (data: any) => {
   return await axios.post(internalApiPostPath, { base64img: data.base64img });

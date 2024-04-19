@@ -1,10 +1,13 @@
 const express = require('express');
 import bodyParser from 'body-parser';
+import cors from 'cors';
 import axios from 'axios';
-const App = express();
-const router = express.Router();
 import { dataURIToBlob } from '../../helpers/functions';
 
+const App = express();
+const router = express.Router();
+
+App.use(cors());
 App.use(bodyParser.json({ limit: '50mb' }));
 App.use('/upload', bodyParser.raw({ limit: '50mb', type: 'multipart/form-data'}));
 
@@ -24,6 +27,7 @@ router.get('/languages', async(req, res) => {
 router.post('/upload/single', async(req, res) => {
 
   const { base64img } = req.body;
+
   const file = dataURIToBlob(base64img);
   
   const form = new FormData();

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text } from 'react-native';
 import { LocationContext } from '@/src/context/locationContext';
+import { internalPostRequest } from '@/src/helpers/requests';
+import { expoImage } from '@/src/types';
 import CameraView from '../../views/CameraView';
 import HeaderView from '../../views/HeaderView';
 import styles from './styles';
@@ -8,7 +10,7 @@ import styles from './styles';
 
 const Main = () => {
   const [location, setLocation] = useState({});
-  const [img, setImg] = useState('');
+  const [img, setImg] = useState({} as expoImage);
 
   const locationPromise = React.useContext(LocationContext);
 
@@ -21,9 +23,18 @@ const Main = () => {
   }, [locationPromise]);
 
   useEffect(() => {
-    // when an image is taken, construct the object to be sent to the server
-    console.log(img);
-    console.log(location);
+    console.log(img.uri);
+    // console.log(location);
+    const data = {
+      base64img: img.uri
+    };
+    const res = internalPostRequest(data)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, [img]);
 
   return (
