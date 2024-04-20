@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { LocationContext } from '@/src/context/locationContext';
 import { internalPostRequest } from '@/src/helpers/requests';
 import { expoImage } from '@/src/types';
 import CameraView from '../../views/CameraView';
 import HeaderView from '../../views/HeaderView';
+import ResultView from '../../views/ResultView';
 import styles from './styles';
 
 
 const Main = () => {
   const [location, setLocation] = useState({});
   const [img, setImg] = useState({} as expoImage);
+  const [result, setResult] = useState(null);
 
   const locationPromise = React.useContext(LocationContext);
 
@@ -23,14 +25,14 @@ const Main = () => {
   }, [locationPromise]);
 
   useEffect(() => {
-    console.log(img.uri);
-    // console.log(location);
+    if (!img.uri) return;
+
     const data = {
       base64img: img.uri
     };
-    const res = internalPostRequest(data)
+    internalPostRequest(data)
       .then((res) => {
-        console.log(res.data);
+        setResult({ result: res.data, location: location });
       })
       .catch((err) => {
         console.log(err);
@@ -41,7 +43,11 @@ const Main = () => {
     <>
       <HeaderView />
       <View style={styles.container}>
-        <CameraView setImg={setImg} />
+        {result ?
+          <ResultView result={result} setResult={setResult} /> 
+            :
+          <CameraView setImg={setImg} />
+        }
       </View>
     </>
   );

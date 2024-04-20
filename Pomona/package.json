@@ -29,6 +29,7 @@
     "react-native": "0.73.6",
     "react-native-svg": "^14.1.0",
     "react-native-web": "~0.19.6",
+    "react-native-webview": "^13.8.6",
     "typescript": "^5.4.4"
   },
   "devDependencies": {
