@@ -3,8 +3,8 @@
     "name": "Pomona",
     "slug": "Pomona",
     "version": "1.0.0",
-    "sdkVersion" : "50.0.18",
-    "entryPoint" : "./src/App.tsx",
+    "sdkVersion": "50.0.18",
+    "entryPoint": "./src/App.tsx",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -16,7 +16,7 @@
         }
       ],
       [
-      "expo-location",
+        "expo-location",
         {
           "locationAlwaysAndWhenInUsePermission": "Allow Pomona to use your location"
         }
@@ -37,10 +37,22 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION"
+      ],
+      "package": "com.elis.nilzen.Pomona"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c27876cd-8833-4c2f-a7be-d3c71438dae1"
+      }
     }
   }
 }
