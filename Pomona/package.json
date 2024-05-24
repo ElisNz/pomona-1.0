@@ -11,7 +11,8 @@
     "ts:check": "tsc",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
-    "build-android": "eas build -p android --profile pomona-mobile"
+    "build-android-test": "eas build -p android --profile pomona-mobile-test",
+    "build-android-prod": "eas build -p android --profile pomona-mobile-prod"
   },
   "dependencies": {
     "@expo/metro-runtime": "~3.1.3",
