@@ -1,5 +1,5 @@
-import Main from './pages/main';
-import { LocationProvider } from './context/locationContext';
+import Main from './src/pages/main';
+import { LocationProvider } from './src/context/locationContext';
 
 export default function App() {
   return (
